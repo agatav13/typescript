@@ -14,7 +14,13 @@ const possibleSex = ["female", "male"];
 const possibleAge = range(100, 1);
 const possibleHeight = range(51, 150);
 
-function randomPerson() {
+interface Human {
+    sex: "female" | "male";
+    age: number;
+    height: number;
+}
+
+function randomPerson() : Human {
     return {
         sex: random(possibleSex),
         age: random(possibleAge),
