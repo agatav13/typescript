@@ -2,7 +2,13 @@
 // oznaczające długość boku trójkąta, a zwróci informację czy dany trójkąt będzie prostokątny.
 
 function isRectangularTriangle(num1: number, num2: number, num3: number) {
-    return num1 ** 2 + num2 ** 2 === num3 ** 2 || num1 ** 2 + num3 ** 2 === num2 ** 2 || num2 ** 2 + num3 ** 2 === num1 ** 2;
+    if (num1>0 && num2>0 && num3>0) {
+        return num1 ** 2 + num2 ** 2 === num3 ** 2 || num1 ** 2 + num3 ** 2 === num2 ** 2 || num2 ** 2 + num3 ** 2 === num1 ** 2;
+    } else {
+        return "At least one of the numbers is negative or equal to zero."
+    }
 }
 
+// test
 console.log(isRectangularTriangle(3, 4, 5));
+console.log(isRectangularTriangle(-3, 4, 5));
