@@ -4,16 +4,27 @@
 // 2. "2001",
 // 3. 1982.
 
-// npm install prompt-sync
-import promptSync from "prompt-sync";
-const prompt = promptSync();
+// zwraca wiek po wpisaniu roku urodzenia jednym z powyższych sposobów
 
-function getMyAge(year: any): [Date, string, number] {
-    return [new Date(String(year)), String(year), Number(year)];
+interface Age {
+    year: number | string | Date;
+    currentYear: number;
 }
 
-const yourYear = prompt("What year were you born in? ");
+function getMyAge(year: number | string | Date) : number | string | Date {
+    const currentYear: number = new Date().getFullYear();
+    if (typeof year === "number") {
+        return currentYear - year;
+    } else if (typeof year === "string") {
+        return currentYear - Number(year);
+    } else if (typeof year === "object") {
+        return currentYear - year.getFullYear();
+    } else {
+        return "Value is not a string, number or Date type.";
+    }
+}
 
-console.log(getMyAge(yourYear));
-console.log(getMyAge(1999));
-console.log(getMyAge("1995"));
+// test
+console.log(getMyAge(1999))
+console.log(getMyAge("2000"))
+console.log(getMyAge(new Date(999999999999)))
